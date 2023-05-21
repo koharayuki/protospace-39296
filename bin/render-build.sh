@@ -1,4 +1,4 @@
-#!/usr/bin/env bash chmod +x ./bin/render-build.sh
+#!/usr/bin/env bash
 # exit on error
 set -o errexit
 
