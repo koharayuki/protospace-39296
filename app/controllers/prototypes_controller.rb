@@ -20,6 +20,9 @@ class PrototypesController < ApplicationController
 
   def edit
     @prototype = Prototype.find(params[:id])
+    unless @prototype.user_id == current_user.id
+      redirect_to action: :index
+    end
   end
 
   def destroy
@@ -47,12 +50,6 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
-  end
-
     private
     def user_name
     params.require(:user).permit(:name).merge(user_id: current_user.id)
@@ -62,3 +59,10 @@ class PrototypesController < ApplicationController
       params.require(:prototype).permit(:title, :catch_copy, :concept, :image,).merge(user_id: current_user.id)
     end
 end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end
+

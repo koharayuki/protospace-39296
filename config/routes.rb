@@ -8,6 +8,7 @@ resources :prototypes, only: [:index, :new, :create, :show, :edit, :update, :des
 resources :prototypes do
   resources :comments, only: :create
 end
+
 resources :users, only: :show
 
 end
